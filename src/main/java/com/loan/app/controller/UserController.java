@@ -40,4 +40,22 @@ public class UserController {
     public ResponseEntity<java.util.List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
+
+    @PutMapping("/{id}/role")
+    public ResponseEntity<UserDto> updateUserRole(@PathVariable Long id, @RequestBody Map<String, String> body) {
+        String role = body.get("role");
+        return ResponseEntity.ok(userService.updateUserRole(id, role));
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<UserDto> updateUserStatus(@PathVariable Long id, @RequestBody Map<String, String> body) {
+        String status = body.get("status");
+        return ResponseEntity.ok(userService.updateUserStatus(id, status));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
 }

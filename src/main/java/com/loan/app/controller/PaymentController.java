@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/payments")
@@ -24,13 +24,24 @@ public class PaymentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PaymentDto>> getAllPayments() {
-        return ResponseEntity.ok(paymentService.getAllPayments());
+    public ResponseEntity<com.loan.app.dto.PageResponseDto<PaymentDto>> getAllPayments(
+            @RequestParam(value = "page", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "size", defaultValue = "100", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "paymentDate", required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = "desc", required = false) String sortDir
+    ) {
+        return ResponseEntity.ok(paymentService.getAllPayments(pageNo, pageSize, sortBy, sortDir));
     }
 
     @GetMapping("/loan/{loanId}")
-    public ResponseEntity<List<PaymentDto>> getPaymentsByLoanId(@PathVariable Long loanId) {
-        return ResponseEntity.ok(paymentService.getPaymentsByLoanId(loanId));
+    public ResponseEntity<com.loan.app.dto.PageResponseDto<PaymentDto>> getPaymentsByLoanId(
+            @PathVariable Long loanId,
+            @RequestParam(value = "page", defaultValue = "0", required = false) int pageNo,
+            @RequestParam(value = "size", defaultValue = "100", required = false) int pageSize,
+            @RequestParam(value = "sortBy", defaultValue = "paymentDate", required = false) String sortBy,
+            @RequestParam(value = "sortDir", defaultValue = "desc", required = false) String sortDir
+    ) {
+        return ResponseEntity.ok(paymentService.getPaymentsByLoanId(loanId, pageNo, pageSize, sortBy, sortDir));
     }
 
     @GetMapping("/{id}")

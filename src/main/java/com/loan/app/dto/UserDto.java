@@ -1,6 +1,7 @@
 package com.loan.app.dto;
 
 import com.loan.app.entity.Role;
+import com.loan.app.entity.UserStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -23,5 +24,6 @@ public class UserDto {
     @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
 
-    private Role role = Role.USER;
+    private Role role;
+    private UserStatus status;
 }

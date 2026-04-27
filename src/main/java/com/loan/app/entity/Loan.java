@@ -33,7 +33,7 @@ public class Loan {
     private BigDecimal interestRate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private LoanStatus status;
 
     @Column(nullable = false)
@@ -42,7 +42,7 @@ public class Loan {
     @Column(nullable = true)
     private String purpose;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 50)
     private String approvedBy;
 
     @ManyToOne(fetch = FetchType.LAZY)
