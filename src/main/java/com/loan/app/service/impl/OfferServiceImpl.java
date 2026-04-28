@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@org.springframework.transaction.annotation.Transactional
 public class OfferServiceImpl implements OfferService {
 
     private final OfferRepository offerRepository;

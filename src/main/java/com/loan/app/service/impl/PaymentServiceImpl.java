@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@org.springframework.transaction.annotation.Transactional
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;

@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@org.springframework.transaction.annotation.Transactional
 public class LoanServiceImpl implements LoanService {
 
     private final LoanRepository loanRepository;
